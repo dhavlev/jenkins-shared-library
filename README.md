@@ -1,5 +1,5 @@
 # jenkins-shared-library
-This library is good start for anyone who is interested in learning and creating Glabal Jenkins Shared Library.
+This library is good start for anyone who is interested in learning and creating Global Jenkins Shared Library.
 
 This library will work on Jenkins setup on Kubernetes and will create dynamic slave pods on-demand.
       
@@ -23,7 +23,7 @@ Jenkinsfile --> ci.groovy --> cd.groovy
 ![Jenkins Job View](static/jenkins-continuous-deployment.JPG)
 
 ### Behind the Scene
-In the screen-print below, 1st row represts dynamic slaves and 2nd row represents Jenkins itself in K8s cluster
+In the screen-print below, 1st row represents dynamic slaves and 2nd row represents Jenkins itself in K8s cluster
 
 ![Jenkins Job View](static/jenkins-k8s-pod-view.JPG)
 
