@@ -77,21 +77,25 @@ def call(body) {
         cd
         {
            env = "int"
+           approval = config.cd.deploy.int
         }
 
         cd
         {
             env = "qa"
+            approval = config.cd.deploy.qa
         }
 
         cd
         {
             env = "stage"
+            approval = config.cd.deploy.stage
         }
 
         cd
         {
             env = "prod"
+            approval = config.cd.deploy.prod
         }
     }
 }

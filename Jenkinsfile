@@ -1,10 +1,10 @@
 
 @Library("jenkins-shared-library") _
 
-def projectValues = [
+def deployConfig = [
     deploy: [
         int: true,
-        qa: false,
+        qa: true,
         stage: false,
         prod: false
     ]
@@ -12,5 +12,5 @@ def projectValues = [
 
 
 ci{
-    
+    cd = deployConfig
 }
