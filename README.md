@@ -12,7 +12,21 @@ Jenkinsfile --> ci.groovy --> cd.groovy
 
 ## Screen Prints
 
-Continuous Deployment Flow
+### Jenkins Job View
 
-Continuous Delivery Flow
+![Jenkins Job View](static/jenkins-job-view.JPG)
+
+### Continuous Delivery Flow
+![Jenkins Job View](static/jenkins-continuous-delivery.JPG)
+
+### Continuous Deployment Flow
+![Jenkins Job View](static/jenkins-continuous-deployment.JPG)
+
+### Behind the Scene
+In the screen-print below, 1st row represts dynamic slaves and 2nd row represents Jenkins itself in K8s cluster
+
+![Jenkins Job View](static/jenkins-k8s-pod-view.JPG)
+
+## Disclaimer
+This jenkins-shared-library is for beginners and for learning purpose. There are lot many features to be added to make this jenkins-shared-library production ready.
 
