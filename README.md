@@ -11,3 +11,8 @@ Jenkinsfile --> ci.groovy --> cd.groovy
 - [Extending with Shared Libraries](https://jenkins.io/doc/book/pipeline/shared-libraries/)
 
 ## Screen Prints
+
+Continuous Deployment Flow
+
+Continuous Delivery Flow
+

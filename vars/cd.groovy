@@ -18,7 +18,7 @@ def call(body) {
             def stageName = "deploy-${config.env}"
             stage(stageName)
             {
-                input "Do you approve ${stageName} deployment?"
+                input "Do you approve ${config.env} deployment?"
                 switch(config.env) 
                 {
                     case "int":

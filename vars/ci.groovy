@@ -39,19 +39,19 @@ def call(body) {
 
             stage("reports")
             {
-                parallel a:
+                parallel cobertura:
                 {
                     stage("cobertura")
                     {
                         new logger().log("generating cobertura reports")
                     }
-                },b:                 
+                },junit:                 
                 {
                     stage("junit")
                     {
                         new logger().log("generating jnuit reports")
                     }
-                },c:                 
+                },html:                 
                 {
                     stage("html")
                     {
