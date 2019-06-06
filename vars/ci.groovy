@@ -24,7 +24,7 @@ def call(body) {
                     checkout scm
                     withEnv(["PATH+EXTRA=/busybox:/kaniko"]) {
                         sh """#!/busybox/sh
-                            /kaniko/executor --dockerfile=Dockerfile --context=`pwd` --destination="${config.docker.dockerRegistry}/${config.docker.repoName}:${config.docker.version}.${env.env.BUILD_ID}"
+                            /kaniko/executor --dockerfile=Dockerfile --context=`pwd` --destination="${config.docker.dockerRegistry}/${config.docker.repoName}:${config.docker.version}.${env.BUILD_ID}"
                         """
                     }
                 }
