@@ -4,13 +4,20 @@
 def deployConfig = [
     deploy: [
         int: true,
-        qa: true,
+        qa: false,
         stage: false,
         prod: false
     ]
 ]
 
+def dockerConfig = [
+    dockerRegistry: "dhavlev",
+    repoName: "voting-app",
+    version: 1.0.0
+]
+
 
 ci{
+    docker = dockerConfig
     cd = deployConfig
 }

@@ -8,7 +8,7 @@ def call(body) {
     body.resolveStrategy = Closure.DELEGATE_FIRST
     body.delegate = config
     
-    String podConfig = libraryResource "podConfig.yaml"
+    String podConfig = libraryResource "podConfig-kaniko.yaml"
     def label = "ci-${UUID.randomUUID().toString()}"
 
     podTemplate(label: label, yaml: podConfig)   
@@ -16,86 +16,19 @@ def call(body) {
         body()
         
         node(label)
-        {            
-            container("maven") 
-            {             
-                stage("checkout")
-                {
-                    dir("${WORKSPACE}/src/github.com/jenkins-shared-library"){
-                        checkout scm
-                    }
-                }
-
-                stage("build+test")
-                {
-                    new logger().log("building and testing applications")
-                }
-
-                stage("sonar")
-                {
-                    new logger().log("performing sonar analysis")
-                }
-            }
-
-            stage("reports")
+        {
+            container(name: "kaniko", shell: "/busybox/sh")
             {
-                parallel cobertura:
+                stage("Build and Push Docker")
                 {
-                    stage("cobertura")
-                    {
-                        new logger().log("generating cobertura reports")
-                    }
-                },junit:                 
-                {
-                    stage("junit")
-                    {
-                        new logger().log("generating jnuit reports")
-                    }
-                },html:                 
-                {
-                    stage("html")
-                    {
-                        new logger().log("generating html reports")
+                    checkout scm
+                    withEnv(["PATH+EXTRA=/busybox:/kaniko"]) {
+                        sh """#!/busybox/sh
+                            /kaniko/executor --dockerfile=Dockerfile --context=`pwd` --destination="${config.docker.dockerRegistry}/${config.docker.repoName}:${config.docker.version}.${env.env.BUILD_ID}"
+                        """
                     }
                 }
             }
-
-            container("maven") 
-            {
-                stage("docker build")
-                {
-                    new logger().log("building docker image")
-                }
-
-                stage("docker publish")
-                {
-                    new logger().log("publishing docker image")
-                }           
-            }
-        }
-
-        cd
-        {
-           env = "int"
-           approval = config.cd.deploy.int
-        }
-
-        cd
-        {
-            env = "qa"
-            approval = config.cd.deploy.qa
-        }
-
-        cd
-        {
-            env = "stage"
-            approval = config.cd.deploy.stage
-        }
-
-        cd
-        {
-            env = "prod"
-            approval = config.cd.deploy.prod
         }
     }
 }
