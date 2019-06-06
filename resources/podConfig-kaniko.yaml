@@ -1,3 +1,4 @@
+apiVersion: v1
 kind: Pod
 metadata:
   name: kaniko
@@ -16,3 +17,6 @@ spec:
   - name: docker-config
     secret:
       secretName: docker-config-secret
+      items:
+        - key: .dockerconfigjson
+          path: config.json
