@@ -5,6 +5,8 @@ void install(config)
     def repository = "${config.dockerRegistry}/${config.reponame}"
     def tag = "${config.version}.${env.BUILD_ID}"
 
+    echo("Install: ${config}, ${repository}, ${tag}")
+
     git(
         branch: 'voting-app', 
         url: 'https://github.com/dhavlev/helm-charts.git'
