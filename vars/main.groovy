@@ -8,7 +8,9 @@ def call(body) {
     body.resolveStrategy = Closure.DELEGATE_FIRST
     body.delegate = config
     body()
-    
+
+    println "Printing Config Values: ${config}"
+
     ci{
         ci = config.ci
     }
