@@ -14,7 +14,7 @@ def call(body) {
     }
 
     cd{
-        cd = config.cdConfig
+        cd = config.cd
         helm = config.ci
     }
 }
