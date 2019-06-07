@@ -8,45 +8,17 @@ def call(body) {
     body.resolveStrategy = Closure.DELEGATE_FIRST
     body.delegate = config
     
-    String podConfig = libraryResource "podConfig.yaml"
+    String podConfig = libraryResource "podConfig-helm.yaml"
     def label = "cd-${UUID.randomUUID().toString()}"
     podTemplate(label: label, yaml: podConfig)   
     {
         body() 
         node(label)
         {
-            def stageName = "deploy-${config.env}"
-            stage(stageName)
+            stage("helm-deploy")
             {
-                if(!config.approval)
-                {
-                    input "Do you approve ${config.env} deployment?"
-                }
-                switch(config.env) 
-                {
-                    case "int":
-                        new logger().log("deploying it on int")
-                    break
-                    case "qa":
-                        new logger().log("deploying it on qa")
-                    break
-                    case "stage":
-                        new logger().log("deploying it on stage")
-                    break
-                    case "prod":
-                        new logger().log("deploying it on prod")
-                    break
-                    default:
-                        new logger().log("unable to find ${config.env}", "ERROR")
-                    break
-                }
+                new helm().install(config.helm)
             }
-
-            email
-            {
-                to = "abc@provider.net"
-                from = "xyz@provider.net"
-            }
-        }       
+        }
     }
 }

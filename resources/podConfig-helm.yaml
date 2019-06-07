@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: helm
+  labels:
+    app: jenkins-cd
+spec:
+  containers:
+  - name: helm
+    image: dhavlev/helm-aws-kubectl:1.0
+    command: ['cat']
+    tty: true
+    resources:
+      limits:
+        cpu: 200m
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    volumeMounts:
+      - name: kube-config
+        mountPath: "/root/.kube"
+  volumes:
+    - name: kube-config
+      secret:
+        secretName: kube-secret
