@@ -11,9 +11,7 @@ def call(body) {
     String podConfig = libraryResource "podConfig-kaniko.yaml"
     def label = "ci-${UUID.randomUUID().toString()}"
 
-    println "Printing Config Values (ci): ${config}"
-
-    podTemplate(label: label, yaml: podConfig)   
+    podTemplate(label: label, yaml: podConfig)
     {
         body()
         
