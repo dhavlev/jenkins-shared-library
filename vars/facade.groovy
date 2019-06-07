@@ -13,7 +13,8 @@ def call(body) {
         ci = config.ci
     }
 
-    //cd{
-    //    cd = config.cdConfig
-    //}
+    cd{
+        cd = config.cdConfig
+        helm = config.ci
+    }
 }
