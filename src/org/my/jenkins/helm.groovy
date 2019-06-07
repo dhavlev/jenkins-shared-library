@@ -2,7 +2,7 @@ package org.my.jenkins
 
 void install(ciConfig, cdConfig) 
 {
-    def repository = "${ciConfig.dockerRegistry}/${ciConfig.reponame}"
+    def repository = "${ciConfig.dockerRegistry}/${ciConfig.repoName}"
     def tag = "${ciConfig.version}.${env.BUILD_ID}"
 
     git(
@@ -11,9 +11,9 @@ void install(ciConfig, cdConfig)
     )
     
     sh(
-        "helm upgrade --install ${ciConfig.reponame} ${ciConfig.reponame} \
+        "helm upgrade --install ${ciConfig.repoName} ${ciConfig.repoName} \
         --set image.repository=${repository} \
         --set image.tag=${tag} \
-        --namespace ${ciConfig.reponame}"
+        --namespace ${ciConfig.repoName}"
     )
 }

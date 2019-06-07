@@ -15,10 +15,14 @@ def call(body) {
         body() 
         node(label)
         {
-            stage("helm-deploy")
+            container("helm")
             {
-                new helm().install(config.ci, config.cd)
+                stage("helm-deploy")
+                {
+                    new helm().install(config.ci, config.cd)
+                }
             }
+            
         }
     }
 }
