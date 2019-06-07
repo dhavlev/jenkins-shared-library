@@ -14,6 +14,6 @@ void install(ciConfig, cdConfig)
         "helm upgrade --install ${ciConfig.reponame} ${ciConfig.reponame} \
         --set image.repository=${repository} \
         --set image.tag=${tag} \
-        --namespace ${config.reponame}"
+        --namespace ${ciConfig.reponame}"
     )
 }

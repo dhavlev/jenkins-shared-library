@@ -13,7 +13,6 @@ def call(body) {
         ci = config.ci
     }
 
-    echo("Printing Config: ${config}")
     cd{
         ci = config.ci
         cd = config.cd
