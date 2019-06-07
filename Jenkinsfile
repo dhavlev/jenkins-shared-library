@@ -18,7 +18,7 @@ def cdConfig = [
 def ciConfig = [
     dockerRegistry: "dhavlev",
     repoName: "voting-app",
-    version: 1.0.0
+    version: "1.0.0"
 ]
 
 
