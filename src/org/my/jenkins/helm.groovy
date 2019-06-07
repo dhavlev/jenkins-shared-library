@@ -1,19 +1,17 @@
 package org.my.jenkins
 
-void install(config) 
+void install(ciConfig, cdConfig) 
 {
-    def repository = "${config.dockerRegistry}/${config.reponame}"
-    def tag = "${config.version}.${env.BUILD_ID}"
-
-    echo("Install: ${config}, ${repository}, ${tag}")
+    def repository = "${ciConfig.dockerRegistry}/${ciConfig.reponame}"
+    def tag = "${ciConfig.version}.${env.BUILD_ID}"
 
     git(
-        branch: 'voting-app', 
-        url: 'https://github.com/dhavlev/helm-charts.git'
+        branch: cdConfig.chart.branch, 
+        url: cdConfig.chart.repo
     )
     
     sh(
-        "helm upgrade --install ${config.reponame} ${config.reponame} \
+        "helm upgrade --install ${ciConfig.reponame} ${ciConfig.reponame} \
         --set image.repository=${repository} \
         --set image.tag=${tag} \
         --namespace ${config.reponame}"

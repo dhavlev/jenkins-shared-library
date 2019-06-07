@@ -17,9 +17,7 @@ def call(body) {
         {
             stage("helm-deploy")
             {
-                echo("Printing CD Config: ${config}")
-                echo("Printing CD Config: ${config.helm}")
-                new helm().install(config.helm)
+                new helm().install(config.ci, config.cd)
             }
         }
     }
