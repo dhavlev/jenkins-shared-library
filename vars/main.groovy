@@ -9,7 +9,7 @@ def call(body) {
     body.delegate = config
     body()
 
-    println "Printing Config Values: ${config}"
+    println "Printing Config Values (main): ${config}"
 
     ci{
         ci = config.ci
