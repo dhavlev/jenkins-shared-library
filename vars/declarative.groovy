@@ -54,6 +54,9 @@ pipeline {
                         }
                     }
                     stage('In Sequential 2') {
+                        when {
+                            branch 'master'
+                        }
                         steps {
                             container('maven') {
                                 script{
@@ -63,11 +66,7 @@ pipeline {
                             }
                         }
                     }
-                    stage('Parallel In Sequential') {
-                        when {
-                            branch 'master'
-                        }
-
+                    stage('Parallel In Sequential') {                       
                         parallel {
                             stage('In Parallel 1') {
                                 steps {
