@@ -11,6 +11,6 @@ def deployConfig = [
 ]
 
 
-ci{
+declarative{
     cd = deployConfig
 }
