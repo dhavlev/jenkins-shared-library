@@ -64,6 +64,10 @@ pipeline {
                         }
                     }
                     stage('Parallel In Sequential') {
+                        when {
+                            branch 'master'
+                        }
+
                         parallel {
                             stage('In Parallel 1') {
                                 steps {
