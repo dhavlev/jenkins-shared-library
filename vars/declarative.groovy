@@ -11,14 +11,7 @@ def call(body) {
     String podConfig = libraryResource "podConfig.yaml"
     def podLabel = "ci-${UUID.randomUUID().toString()}"
 
-    pipeline {
-        agent none {
-            kubernetes {
-                label podLabel
-                defaultContainer 'jnlp'
-                yaml podConfig
-            }
-        }
+    pipeline {        
         stages {
             stage('Stage-Sq-1') {
                 steps {
