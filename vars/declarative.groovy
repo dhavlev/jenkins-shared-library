@@ -11,18 +11,18 @@ def call(body) {
     String podConfig = libraryResource "podConfig.yaml"
     def podLabel = "ci-${UUID.randomUUID().toString()}"
 
-    pipeline {        
+    pipeline {
+        agent none
         stages {
             stage('Stage-Sq-1') {
-                steps {
-                    agent {
-                        kubernetes {
-                            label podLabel
-                            defaultContainer 'jnlp'
-                            yaml podConfig
-                        }
+                agent {
+                    kubernetes {
+                        label podLabel
+                        defaultContainer 'jnlp'
+                        yaml podConfig
                     }
-
+                }
+                steps {
                     container('maven') {
                         sh 'mvn -version'
                     }
@@ -38,7 +38,7 @@ def call(body) {
                     }
                 }
                 
-                stages{
+                stages {
                     stage("Stage-B1"){
                         step{
                             echo "Stage B1"
