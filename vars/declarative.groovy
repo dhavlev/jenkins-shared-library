@@ -24,7 +24,7 @@ pipeline {
             }
             steps {
                 container('maven') {
-                    echo "On Non-Sequential Stage"
+                    new logger.log("On Non-Sequential Stage")
                 }
             }
         }
@@ -43,14 +43,14 @@ pipeline {
                     stage('In Sequential 1') {
                         steps {
                             container('maven') {
-                                echo "In Sequential 1"
+                                new logger.log("In Sequential 1")
                             }
                         }
                     }
                     stage('In Sequential 2') {
                         steps {
                             container('maven') {
-                                echo "In Sequential 2"
+                                new logger.log("In Sequential 2")
                             }
                         }
                     }
@@ -59,14 +59,14 @@ pipeline {
                             stage('In Parallel 1') {
                                 steps {
                                     container('maven') {
-                                        echo "In Parallel 1"
+                                        new logger.log("In Parallel 1")
                                     }
                                 }
                             }
                             stage('In Parallel 2') {
                                 steps {
                                     container('maven') {
-                                        echo "In Parallel 2"
+                                        new logger.log("In Parallel 2")
                                     }
                                 }
                             }
