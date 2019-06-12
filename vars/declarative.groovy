@@ -23,11 +23,8 @@ pipeline {
                 }
             }
             steps {
-                container('maven') {
-                    script{
-                        new logger().log("On Non-Sequential Stage")
-                    }
-                    
+                script{
+                    new logger().log("On Non-Sequential Stage")
                 }
             }
         }
