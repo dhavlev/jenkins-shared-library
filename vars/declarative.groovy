@@ -24,9 +24,10 @@ def call(body) {
                 steps {
                     agent {
                         kubernetes {
-                        label podLabel
-                        defaultContainer 'jnlp'
-                        yaml podConfig
+                            label podLabel
+                            defaultContainer 'jnlp'
+                            yaml podConfig
+                        }
                     }
 
                     container('maven') {
@@ -38,9 +39,10 @@ def call(body) {
             stage('Stage-A') {
                 agent {
                     kubernetes {
-                    label podLabel
-                    defaultContainer 'jnlp'
-                    yaml podConfig
+                        label podLabel
+                        defaultContainer 'jnlp'
+                        yaml podConfig
+                    }
                 }
                 
                 stages{
