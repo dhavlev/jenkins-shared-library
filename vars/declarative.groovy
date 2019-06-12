@@ -40,24 +40,24 @@ def call(body) {
                 
                 stages {
                     stage("Stage-B1"){
-                        step{
+                        steps{
                             echo "Stage B1"
                         }
                     }
                     stage("Stage-B2"){
-                        step{
+                        steps{
                             echo "Stage B2"
                         }
                     }
                     stage("Parallel Stage"){
                         parallel{
                             stage("Stage-C1"){
-                                step{
+                                steps{
                                     echo "Paraller Stage C1"
                                 }
                             }
                             stage("Stage-C2"){
-                                step{
+                                steps{
                                     echo "Paraller Stage C2"
                                 }
                             }
