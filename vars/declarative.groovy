@@ -24,7 +24,10 @@ pipeline {
             }
             steps {
                 container('maven') {
-                    new logger().log("On Non-Sequential Stage")
+                    script{
+                        new logger().log("On Non-Sequential Stage")
+                    }
+                    
                 }
             }
         }
@@ -43,14 +46,20 @@ pipeline {
                     stage('In Sequential 1') {
                         steps {
                             container('maven') {
-                                new logger().log("In Sequential 1")
+                                script{
+                                    new logger().log("In Sequential 1")
+                                }
+                                
                             }
                         }
                     }
                     stage('In Sequential 2') {
                         steps {
                             container('maven') {
-                                new logger().log("In Sequential 2")
+                                script{
+                                    new logger().log("In Sequential 2")
+                                }
+                                
                             }
                         }
                     }
@@ -59,14 +68,19 @@ pipeline {
                             stage('In Parallel 1') {
                                 steps {
                                     container('maven') {
-                                        new logger().log("In Parallel 1")
+                                        script{
+                                            new logger().log("In Parallel 1")
+                                        }
+                                        
                                     }
                                 }
                             }
                             stage('In Parallel 2') {
                                 steps {
                                     container('maven') {
-                                        new logger().log("In Parallel 2")
+                                        script{
+                                            new logger().log("In Parallel 2")
+                                        }
                                     }
                                 }
                             }
