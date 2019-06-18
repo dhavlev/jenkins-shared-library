@@ -9,12 +9,18 @@ def call(body) {
     body.delegate = config
     body()
 
-    ci{
-        ci = config.ci
+    if(config.ci)
+    {
+        ci{
+            ci = config.ci
+        }
     }
-
-    cd{
-        ci = config.ci
-        cd = config.cd
+    
+    if(config.cd)
+    {
+        cd{
+            ci = config.ci
+            cd = config.cd
+        }
     }
 }

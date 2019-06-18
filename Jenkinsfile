@@ -4,8 +4,12 @@
 def cdConfig = [
     chart: [
         repo: "https://github.com/dhavlev/helm-charts.git",
-        branch: "voting-app"
+        branch: "voting-app"        
     ]
+
+//    infra: [
+//        chart: "voting-app-db"
+//    ]
 ]
 
 def ciConfig = [
