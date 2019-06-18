@@ -1,30 +1,30 @@
 package org.my.jenkins
 
-void install(ciConfig, cdConfig) 
+void install(config) 
 {
     git(
         branch: cdConfig.chart.branch, 
         url: cdConfig.chart.repo
     )
 
-    if(cdConfig.infra)
+    if(config.cd.infra)
     {
-        createNamspace(cdConfig.chart)
+        createNamspace(config.cd.chart)
         sh(
-            "helm upgrade --install ${cdConfig.chart} ${cdConfig.chart} --namespace ${cdConfig.chart}"
+            "helm upgrade --install ${config.cd.chart} ${config.cd.chart} --namespace ${config.cd.chart}"
         )
     }
     else
     {
-        def repository = "${ciConfig.dockerRegistry}/${ciConfig.repoName}"
-        def tag = "${ciConfig.version}.${env.BUILD_ID}"
-        
-        createNamspace(cdConfig.repoName)
+        def repository = "${config.ci.dockerRegistry}/${config.ci.repoName}"
+        def tag = "${config.ci.version}.${env.BUILD_ID}"
+
+        createNamspace(config.ci.repoName)
         sh(
-            "helm upgrade --install ${ciConfig.repoName} ${ciConfig.repoName} \
+            "helm upgrade --install ${config.ci.repoName} ${config.ci.repoName} \
             --set image.repository=${repository} \
             --set image.tag=${tag} \
-            --namespace ${ciConfig.repoName}"
+            --namespace ${config.ci.repoName}"
         )
     }
 }

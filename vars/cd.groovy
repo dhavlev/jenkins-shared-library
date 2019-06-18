@@ -19,7 +19,7 @@ def call(body) {
             {
                 stage("helm-deploy")
                 {
-                    new helm().install(config.ci, config.cd)
+                    new helm().install(config)
                 }
             }
             
