@@ -9,9 +9,9 @@ void install(config)
 
     if(config.cd.infra)
     {
-        createNamspace(config.cd.chart)
+        createNamspace(config.cd.infra.chart)
         sh(
-            "helm upgrade --install ${config.cd.chart} ${config.cd.chart} --namespace ${config.cd.chart}"
+            "helm upgrade --install ${config.cd.infra.chart} ${config.cd.infra.chart} --namespace ${config.cd.infra.chart}"
         )
     }
     else
