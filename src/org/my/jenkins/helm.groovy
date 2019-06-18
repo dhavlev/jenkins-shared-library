@@ -3,8 +3,8 @@ package org.my.jenkins
 void install(config) 
 {
     git(
-        branch: cdConfig.chart.branch, 
-        url: cdConfig.chart.repo
+        branch: config.cd.chart.branch, 
+        url: config.cd.chart.repo
     )
 
     if(config.cd.infra)
