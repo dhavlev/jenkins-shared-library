@@ -32,7 +32,7 @@ void install(ciConfig, cdConfig)
 void createNamspace(namespace)
 {
     def status = sh(
-                    script: "kubectl create namspace ${namespace} || kubectl label namespace ${namespace} istio-injection=enabled"
+                    script: "kubectl create namspace ${namespace} || kubectl label namespace ${namespace} istio-injection=enabled",
                     returnStatus: true
                 )
     
