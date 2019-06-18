@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: helm
-    image: dhavlev/helm-aws-kubectl:1.0
+    image: dhavlev/helm-aws-kubectl:1.1
     command: ['cat']
     tty: true
     resources:
