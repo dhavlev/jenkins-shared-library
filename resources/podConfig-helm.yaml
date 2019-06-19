@@ -20,7 +20,12 @@ spec:
     volumeMounts:
       - name: kube-config
         mountPath: "/root/.kube"
+      - name: aws-config
+        mountPath: "/root/.aws"
   volumes:
     - name: kube-config
       secret:
         secretName: kube-secret
+    - name: aws-config
+      secret:
+        secretName: aws-secret
